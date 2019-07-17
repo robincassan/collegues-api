@@ -3,6 +3,9 @@ package com.example.demo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,10 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/collegues")
-
+@CrossOrigin
 public class CollegueController {
 
-    private CollegueService collegueService = new CollegueService();
+    @Autowired
+    private CollegueService collegueService;
 
 //    GET /collegues?nom=XXX
 
@@ -31,6 +35,13 @@ public class CollegueController {
         }
 
         return matricules;
+
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/{matricule}")
+    public Collegue getCol(@PathVariable String matricule) {
+
+        return collegueService.rechercherParMatricule(matricule);
 
     }
 

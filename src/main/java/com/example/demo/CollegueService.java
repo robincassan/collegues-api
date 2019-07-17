@@ -9,9 +9,16 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class CollegueService {
 
     private Map<String, Collegue> data = new HashMap<>();
+
+    @Autowired
+    private CollegueRepository collegueRepository;
 
     public CollegueService() {
         Collegue col1 = new Collegue();
@@ -72,6 +79,27 @@ public class CollegueService {
 
         }
         return nom;
+    }
+
+    public Collegue rechercherParMatricule(String matriculeRecherche) {
+        // TODO retourner le collègue dont le matricule est fourni
+
+        // creation de la liste qui recupérera les noms recherchés
+
+        Set<Entry<String, Collegue>> listeEntries = data.entrySet();
+
+        for (Entry<String, Collegue> entry : listeEntries) {
+            String matricule = entry.getKey();
+            Collegue collegue = entry.getValue();
+            if (matriculeRecherche.equals(matricule)) {
+                return collegue;
+            }
+
+        }
+        // TODO retourner une exception `CollegueNonTrouveException` (à créer)
+        // si le matricule ne correspond à aucun collègue
+
+        throw new ColleguesNonTrouveException();
 
     }
 

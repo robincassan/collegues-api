@@ -2,8 +2,15 @@ package com.example.demo;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tabletest")
 public class Collegue {
 
+    @Id
     private String matricule;
     private String nom;
     private String prenoms;
