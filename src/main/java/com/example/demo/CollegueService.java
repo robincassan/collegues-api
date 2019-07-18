@@ -103,4 +103,13 @@ public class CollegueService {
 
     }
 
+    public Collegue modifierCollegue(Collegue collegue, String matricule) {
+        Collegue col = rechercherParMatricule(matricule);
+        col.setEmail(collegue.getEmail());
+        col.setPhotoUrl(collegue.getPhotoUrl());
+        data.put(matricule, col);
+        return col;
+
+    }
+
 }
