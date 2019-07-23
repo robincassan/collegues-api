@@ -53,4 +53,9 @@ public class CollegueController {
 
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/photos")
+    public List<Collegue> getColleguePhotos() {
+        return null;
+
+    }
 }
